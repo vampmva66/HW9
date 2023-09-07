@@ -44,18 +44,29 @@
 // m = 3, n = 2 -> A(m,n) = 29
 
 System.Console.WriteLine("Введите число: ");
-int num1 = Convert.ToInt32(Console.ReadLine());
+int M = Convert.ToInt32(Console.ReadLine());
 
 System.Console.WriteLine("Введите число: ");
-int num2 = Convert.ToInt32(Console.ReadLine());
+int N = Convert.ToInt32(Console.ReadLine());
 
-if (num1 <0 || num2 <0)
+AkkermanFunction(M,N);
+void AkkermanFunction(int M, int N)
 {
-    System.Console.WriteLine("Ошибка ввода");
+    Console.Write(Akkerman(M, N)); 
 }
 
-int AkkerFun(int num2, int num1)
+int Akkerman(int M, int N)
 {
-    if (num2 == num1) return num2;
-    else return SumEl(num2 + 1, num1) + num2;
+    if (M == 0)
+    {
+        return N + 1;
+    }
+    else if (N == 0 && M > 0)
+    {
+        return Akkerman(M - 1, 1);
+    }
+    else
+    {
+        return (Akkerman(M - 1, Akkerman(M, N - 1)));
+    }
 }
